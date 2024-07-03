@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg3">
+
+    <!-- Profile picture and name section -->
+    <LinearLayout
+        android:id="@+id/profile_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_profile"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+    <!-- Account details section -->
+    <LinearLayout
+        android:id="@+id/layoutDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/profile_section"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:fontFamily="@font/lato"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="Nama"
+            android:fontFamily="@font/lato"
+            android:background="@drawable/shape1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lato"
+            android:textStyle="bold"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/tvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="Email"
+            android:fontFamily="@font/lato"
+            android:background="@drawable/shape1" />
+
+        <!-- Logout button -->
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:backgroundTint="@android:color/black"
+            android:text="Log Out"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</RelativeLayout>
