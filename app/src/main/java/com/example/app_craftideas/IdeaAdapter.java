@@ -1,12 +1,19 @@
 package com.example.app_craftideas;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import android.util.Log;
+
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.app_craftideas.databinding.ItemIdeaBinding;
 import java.util.List;
 
@@ -101,7 +108,7 @@ public class IdeaAdapter extends RecyclerView.Adapter<IdeaAdapter.IdeaViewHolder
             Glide.with(itemView.getContext())
                     .load(imageUrl)
                     .placeholder(R.drawable.ic_camera) // Gambar placeholder saat loading
-                    .error(R.drawable.logo)          // Gambar default jika terjadi kesalahan
+                    .error(R.drawable.image)          // Gambar default jika terjadi kesalahan
                     .into(binding.ivImage);            // ImageView untuk menampilkan gambar
         }
     }

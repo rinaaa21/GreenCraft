@@ -2,12 +2,12 @@ package com.example.app_craftideas;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -43,6 +43,7 @@ public class EditIdeaActivity extends AppCompatActivity {
         editTextTitle = findViewById(R.id.editTextTitle);
         editTextDescription = findViewById(R.id.editTextDescription);
         imageViewIdea = findViewById(R.id.imageViewIdea);
+        Button buttonChooseImage = findViewById(R.id.btnChooseImage);
 
         // Inisialisasi ApiService menggunakan ApiClient
         apiService = ApiClient.getApiService(this);
@@ -72,6 +73,14 @@ public class EditIdeaActivity extends AppCompatActivity {
             Toast.makeText(this, "Data ide tidak ditemukan", Toast.LENGTH_SHORT).show();
             finish(); // Menutup Activity jika data tidak ditemukan
         }
+
+        // Tambahkan listener untuk tombol "Choose Image"
+        buttonChooseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseImage();
+            }
+        });
     }
 
     // Metode untuk menyimpan perubahan setelah pengeditan
@@ -112,7 +121,7 @@ public class EditIdeaActivity extends AppCompatActivity {
     }
 
     // Metode untuk memilih gambar baru terkait ide
-    public void chooseImage(View view) {
+    public void chooseImage() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -127,12 +136,11 @@ public class EditIdeaActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
 
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-                imageViewIdea.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            // Menggunakan Glide untuk memuat gambar dari URI
+            Glide.with(this)
+                    .load(imageUri)
+                    .placeholder(R.drawable.cam)
+                    .into(imageViewIdea);
         }
     }
 }

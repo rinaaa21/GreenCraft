@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -197,7 +198,16 @@ public class HomeFragment extends Fragment {
         TextView titleTextView = dialogView.findViewById(R.id.idea_title);
         TextView descriptionTextView = dialogView.findViewById(R.id.idea_description);
 
-        Glide.with(this).load(idea.getImageUrl()).into(imageView);
+        // Menggunakan RequestOptions untuk mengatur placeholder dan error image
+        RequestOptions requestOptions = new RequestOptions()
+                .placeholder(R.drawable.cam) // Gambar default saat loading
+                .error(R.drawable.image); // Gambar default jika terjadi error
+
+        Glide.with(this)
+                .load(idea.getImageUrl())
+                .apply(requestOptions)
+                .into(imageView);
+
         titleTextView.setText(idea.getTitle());
         descriptionTextView.setText(idea.getDescription());
 
@@ -207,6 +217,7 @@ public class HomeFragment extends Fragment {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
 
     // Method untuk memfilter ide berdasarkan query
     private void filterIdeas(String query) {
